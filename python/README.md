@@ -8,7 +8,7 @@
 - cal_oop.py
 
 - calculator.py
-  simple calculator
+  1. simple calculator
 
 - deck_of_cards_oop.py
 
