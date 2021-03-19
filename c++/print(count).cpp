@@ -13,7 +13,7 @@ int main() {
   cout << endl;
 
   //you can add endl at the end of a text
-  cout << "don't jump that fence!" << endl;
+  cout << "don't jump that fence!\n";
 
   //pauses the program so you can see what's going on
   //system("pause");
