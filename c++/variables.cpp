@@ -12,9 +12,9 @@ int main() {
 
   int sum = a + b;
 
-  cout << sum << endl;
+  cout << "sum " << sum << endl;
 
   //print with cout
-  cout << tuna << endl;
+  cout << "tuna " << tuna << endl;
 
 }
