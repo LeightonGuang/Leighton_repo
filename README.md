@@ -1,7 +1,8 @@
-## My repo
+# My repo
 
-# About
+## About
 This is my personal repository
 
-1. C++
-2. Python
+1. Arduino
+2. C++
+3. Python
