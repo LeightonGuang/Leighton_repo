@@ -2,8 +2,8 @@
 
 using namespace std;
 
-//put the function on top so the program knows what the function is
-void printSomething(int x){
+//put the function above the main
+void printSomething(int x){     //void means not to return anything in function
   cout << "The number "<< x << endl;
 }
 
