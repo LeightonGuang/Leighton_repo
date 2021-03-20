@@ -4,7 +4,7 @@
 g++/c++ -o (OutputFile name) File.cpp
 
 
-##example
+## example
 ```cpp
 g++ -o hello HelloWorld.cpp
 
