@@ -3,11 +3,12 @@
 ## Compile
 g++/c++ -o (OutputFile name) File.cpp
 
-### eg. 
+```cpp
 g++ -o hello HelloWorld.cpp
 
-### run
+//run
 ./hello
 
-### delete file
+//delete File
 rm hello
+```
