@@ -2,15 +2,18 @@ import time
 
 while True:
     userInput = int(input("""
-                [Pomodor Timer]
-[1] to start
-[2] to stop
-[0] to exit
+________________________________________
+|           [Pomodor Timer]            |
+|   [1] to start                       |
+|   [2] to stop                        |
+|   [0] to exit                        |
+|______________________________________|
+
 >> """))
 
     if (userInput == 1):
-        timeW = 25
-        timeW *= 60
+        timeW = 25              #set time to 25 minutes
+        timeW *= 60             #times by 60 to make it minutes
         try:
             while timeW >= 0:
                 min, sec = divmod(timeW, 60)
