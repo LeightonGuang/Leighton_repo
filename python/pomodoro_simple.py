@@ -12,7 +12,7 @@ def timer(minutes):
 while True:
     userInput = int(input("""
 ________________________________________
-|           [Pomodor Timer]            |
+|           [Pomodoro Timer]           |
 |   [1] 25 mins work and 5 mins break  |
 |   [2] 50 mins work and 10 mins break |
 |   [3] Custom time                    |
