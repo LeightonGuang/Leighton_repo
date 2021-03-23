@@ -5,5 +5,6 @@ This is my personal repository
 
 1. Arduino
 2. C++
-3. Python
-4. Java
+3. C
+4. Python
+5. Java
