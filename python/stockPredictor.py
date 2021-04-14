@@ -9,7 +9,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, LSTM
 
 #Load data
-company = 'AAPL'
+company = ''
+company = input("enter stock code\n > ")
 
 #training data dates
 start = dt.datetime(2012,1,1)           #year, month, day
