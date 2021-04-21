@@ -4,3 +4,5 @@ int get_int(char* input){
   scanf("%d", &number);
   return number;
 }
+
+typedef char *string;
