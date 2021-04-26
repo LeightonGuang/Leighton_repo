@@ -1,25 +1,17 @@
 #include <stdio.h>
 
+//variables that store addresses are pointers
+
 int main(void) {
-  int i;
-  int numbers[5] = {1,2,3,4,5};
+  //variable tuna to 19
+  int tuna = 19;
 
-  printf("Element \t Address \t\t\t Value \n");
+  printf("Address \t\t Name \t Value \n");
 
-  for(i = 0; i < 5; i++){
-    printf("numbers[%d] \t %p \t %d \n", i, &numbers[i], numbers[i]);
-  }
+  int * pTuna = &tuna;
 
-  printf("\narray names are pointers to the first element of list\n");
-  printf("numbers \t %p \n", numbers);
-
-  printf("\ndereferenceing\n");
-  printf("*numbers \t %d \n", *numbers);
-
-  printf("\npointer of numbers[2]\n");
-  printf("&numbers[2] \t %p \n", &numbers[2]);
-
-  printf("\n*(numbers+2) \t %p \n", numbers+2);
+  printf("%p \t %s \t %d \n", pTuna, "tuna", tuna);
+  printf("%p \t %s \t %p \n", &pTuna, "pTuna", pTuna);
 
   return 0;
 }
