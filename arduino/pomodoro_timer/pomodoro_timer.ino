@@ -28,34 +28,26 @@ void setup()
 //main loop--------------------------------------------------
 void loop()
 {
-  digitalWrite(redLed, HIGH);
-  buttonWait();
-  if (work == true)
+  if (work == true)   //work
   {
+    digitalWrite(redLed, HIGH);
+    digitalWrite(greenLed, LOW);
+    buttonWait();       //press button to start work
     //25 minutes loop
     for (int i = 0; i < 5; i++)
     {
       flash(redLed);
       checkInput();
-
-      if (pressLength >= 10)
-      {
-        buttonWait();
-      }
-
-      else if (pressLength >= 3000)
-      {
-        break;
-      }
     }
     
     work = false;
-    digitalWrite(greenLed, HIGH);
-    buttonWait();
   }
   
-  else if (work == false)   
+  else if (work == false)       //break
   {
+    digitalWrite(greenLed, HIGH);
+    digitalWrite(redLed, LOW);
+    buttonWait();     //press button to start break
     //5 minutes loop
     for (int i = 0; i < 2; i++)
     {
@@ -77,10 +69,10 @@ void checkInput()
   {
     if (pressLength % 1000 != 0 or pressLength == 0)
     {
-      digitalWrite(redLed, LOW);
+      digitalWrite(redLed, LOW);          //no flashing when it's not on the second
     }
 
-    else if (pressLength % 1000 == 0)
+    else if (pressLength % 1000 == 0)     //flashing every second when holding down the button
     {
       digitalWrite(redLed, HIGH);
     }
@@ -91,14 +83,19 @@ void checkInput()
     Serial.print("ms = ");
     Serial.println(pressLength);
   }
+
+  if (pressLength >= 3000)    //play reset flash when button is held for 3 seconds or more
+  {
+    resetFlash();
+  }
 }
 
 void flash(int led)
 {
   Serial.println("flash led");
-  digitalWrite(led, HIGH);
-  delay(500);
   digitalWrite(led, LOW);
+  delay(500);
+  digitalWrite(led, HIGH);
   delay(500);
 }
 
@@ -130,4 +127,17 @@ void buttonWait()
       Serial.println("unpause");
     }
   }
+}
+
+void extra()
+{
+  if (pressLength >= 10)
+      {
+        buttonWait();
+      }
+
+      else if (pressLength >= 3000)
+      {
+       
+      }
 }
