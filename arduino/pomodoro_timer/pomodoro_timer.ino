@@ -12,7 +12,6 @@ const int hold = 3000;        //hold to reset timer
 const long workTime = 25 * 60 * 1000L;
 
 bool work = true;
-bool reset = false;
 
 //setup
 void setup()
@@ -87,11 +86,13 @@ void checkInput()
   if (pressLength >= 3000)    //play reset flash when button is held for 3 seconds or more
   {
     resetFlash();
+    asm volatile ("jmp 0");
   }
 }
 
 void flash(int led)
-{
+{ 
+  checkInput();
   Serial.println("flash led");
   digitalWrite(led, LOW);
   delay(500);
