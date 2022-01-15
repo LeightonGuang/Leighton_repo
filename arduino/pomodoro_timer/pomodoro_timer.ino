@@ -1,8 +1,8 @@
 //button will make an led flash 5 times
-const int button = 2;
+const byte button = 2;
 
-const int redLed = 7;
-const int greenLed = 8;
+const byte redLed = 7;
+const byte greenLed = 8;
 
 int pressLength = 0;    //record how long the button was held
 
@@ -12,6 +12,7 @@ const int hold = 3000;        //hold to reset timer
 const long workTime = 25 * 60 * 1000L;
 
 bool work = true;
+bool processing = false;    //only run buttonWait when processing is true
 
 //setup
 void setup()
@@ -29,17 +30,19 @@ void loop()
 {
   if (work == true)   //work
   {
-    digitalWrite(redLed, HIGH);
-    digitalWrite(greenLed, LOW);
-    buttonWait();       //press button to start work
+    digitalWrite(redLed, HIGH);     //indicate its work mode
+    digitalWrite(greenLed, LOW);    //clear any indication for break mode
+    buttonWait();                   //press to start timer
+    processing = true;              
     //25 minutes loop
     for (int i = 0; i < 5; i++)
     {
-      flash(redLed);
-      checkInput();
+      checkHold();                  //check for any button input to stop or reset
+      flash(redLed);                //led flashes every second
     }
     
     work = false;
+    processing = false;
   }
   
   else if (work == false)       //break
@@ -47,25 +50,28 @@ void loop()
     digitalWrite(greenLed, HIGH);
     digitalWrite(redLed, LOW);
     buttonWait();     //press button to start break
+    processing = true;
     //5 minutes loop
     for (int i = 0; i < 2; i++)
     {
       flash(greenLed);
-      checkInput();
+      checkHold();
     }
 
     work = true;
+    processing = false;
   }
 }
 //-----------------------------------------------------------
 
 //checks for what button combination is pressed
-void checkInput()
+void checkHold()
 {
   pressLength = 0;
   
   while (digitalRead(button) == HIGH)
   {
+    digitalWrite(greenLed, HIGH);   //to indicate button was pressed
     if (pressLength % 1000 != 0 or pressLength == 0)
     {
       digitalWrite(redLed, LOW);          //no flashing when it's not on the second
@@ -83,16 +89,12 @@ void checkInput()
     Serial.println(pressLength);
   }
 
-  if (pressLength >= 3000)    //play reset flash when button is held for 3 seconds or more
-  {
-    resetFlash();
-    asm volatile ("jmp 0");
-  }
+  digitalWrite(greenLed, LOW);
+  pauseLogic();
 }
 
 void flash(int led)
 { 
-  checkInput();
   Serial.println("flash led");
   digitalWrite(led, LOW);
   delay(500);
@@ -117,28 +119,33 @@ void resetFlash()
 
 void buttonWait()
 {
-  Serial.println("waiting for input");
-
+  Serial.println("click to unpause");
   while (digitalRead(button) == LOW)
   {
     delay(10);
     Serial.println("pause");
-    if (digitalRead(button) == HIGH)
+    if (digitalRead(button) == HIGH && pressLength >= 100)
     {
       Serial.println("unpause");
     }
   }
 }
 
+void pauseLogic()     //logic for what combination was held
+{
+  if (pressLength >= 3000)    //play reset flash when button is held for 3 seconds or more
+  {
+    resetFlash();
+    asm volatile ("jmp 0");
+  }
+  
+  else if (pressLength >= 100 && processing == true)
+  {
+    buttonWait();
+  }
+}
+
 void extra()
 {
-  if (pressLength >= 10)
-      {
-        buttonWait();
-      }
-
-      else if (pressLength >= 3000)
-      {
-       
-      }
+  
 }
