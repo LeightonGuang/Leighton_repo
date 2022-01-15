@@ -1,10 +1,12 @@
+//pomodoro timer with millis
+
 const byte button = 2;
 
 const byte redLed = 7;
 const byte greenLed = 8;
 
-const long workTime = 5 * 1000L;
-const long breakTime = 2 * 1000L;
+const unsigned long workTime = 25 * 60;
+const unsigned long breakTime = 5 * 60;
 
 unsigned long timeCounter = 0;
 const int timeInterval = 500;
@@ -20,24 +22,25 @@ bool activeHold = false;
 int redState = LOW;
 int greenState = LOW;
 
-void setup() 
+void setup()
 {
   pinMode(button, INPUT_PULLUP);
   pinMode(greenLed, OUTPUT);
   pinMode(redLed, OUTPUT);
-  
+
   Serial.begin(9600);
   Serial.println("Pomodoro timer");
+  digitalWrite(redLed, HIGH);
 }
 
-void loop() 
+void loop()
 {
   keyPress();   //detect what kind of input is pressed
-  
+
   if (work == true && processing == true)
   {
     unsigned long redCurrentTime = millis();     //this keeps getting bigger
-  
+
     if (redCurrentTime - previousTime >= timeInterval)
     {
       previousTime = redCurrentTime;     //save the last currentTime to previousTime
@@ -46,14 +49,13 @@ void loop()
         Serial.println("red on");
         redState = HIGH;
       }
-  
+
       else if (redState == HIGH)
       {
         Serial.println("red off");
         redState = LOW;
         timeCounter++;
-        Serial.print("sec: ");
-        Serial.println(timeCounter);
+        timeConvert(timeCounter);
       }
       digitalWrite(redLed, redState);
     }
@@ -62,7 +64,7 @@ void loop()
   else if (work == false && processing == true)
   {
     unsigned long greenCurrentTime = millis();     //this keeps getting bigger
-  
+
     if (greenCurrentTime - previousTime >= timeInterval)
     {
       previousTime = greenCurrentTime;     //save the last currentTime to previousTime
@@ -71,32 +73,33 @@ void loop()
         Serial.println("green on");
         greenState = HIGH;
       }
-  
+
       else if (greenState == HIGH)
       {
         Serial.println("green off");
         greenState = LOW;
         timeCounter++;
-        Serial.print("sec: ");
-        Serial.println(timeCounter);
-        
+        timeConvert(timeCounter);
+
       }
       digitalWrite(greenLed, greenState);
     }
   }
 
-  if (work == true && timeCounter == 5)
+  if (work == true && timeCounter == workTime)     //if work time is up
   {
     work = false;
     processing = false;
     timeCounter = 0;
+    digitalWrite(greenLed, HIGH);       //indicate break mode with red led
   }
 
-  else if (work == false && timeCounter == 2)
+  else if (work == false && timeCounter == breakTime)
   {
     work = true;
     processing = false;
     timeCounter = 0;
+    digitalWrite(redLed, HIGH);       //indicate work mode with red led
   }
 }
 
@@ -118,17 +121,17 @@ void keyPress()
   }
 
   if (digitalRead(button) == LOW && (currentHoldTime >= 3000))      //reset
-  { 
+  {
     Serial.println("reset");
     Serial.println("processing: false");
     processing = false;
     previousHold = currentHoldTime;
-    digitalWrite(redLed, LOW);
     digitalWrite(greenLed, LOW);
     resetFlash();
     currentHoldTime = 0;
     timeCounter = 0;
     work = true;
+    digitalWrite(redLed, HIGH);     //indicate work mode with red led
   }
 
   else if (digitalRead(button) == LOW && (currentHoldTime >= 100))      //click
@@ -161,5 +164,13 @@ void resetFlash()
     delay(50);
     digitalWrite(greenLed, LOW);
   }
+}
 
+void timeConvert(int sec)
+{
+  byte minutes = sec / 60;
+  byte seconds = sec - (minutes * 60);
+  Serial.print(minutes);
+  Serial.print(":");
+  Serial.println(seconds);
 }
