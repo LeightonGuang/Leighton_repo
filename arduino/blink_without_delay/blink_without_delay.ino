@@ -1,152 +1,105 @@
+//button will make an led flash 5 times
 const byte button = 2;
 
 const byte redLed = 7;
 const byte greenLed = 8;
 
-const long workTime = 5 * 1000L;
-const long breakTime = 2 * 1000L;
+int pressLength = 0;    //record how long the button was held
 
-unsigned long timeCounter = 0;
-const int timeInterval = 500;
+const int fastClick = 100;  //click to start
+const int hold = 3000;        //hold to reset timer
 
-unsigned long currentHoldTime = 0;
-unsigned long previousTime = 0;
-unsigned long previousHold = 0;
+const long workTime = 25 * 60 * 1000L;
 
-bool processing = false;
 bool work = true;
-bool activeHold = false;
+bool processing = false;    //only run buttonWait when processing is true
 
-int redState = LOW;
-int greenState = LOW;
-
-void setup() 
+//setup
+void setup()
 {
   pinMode(button, INPUT_PULLUP);
+
   pinMode(greenLed, OUTPUT);
   pinMode(redLed, OUTPUT);
-  
+  //start serial communication for debugging
   Serial.begin(9600);
-  Serial.println("Pomodoro timer");
 }
 
-void loop() 
+//main loop--------------------------------------------------
+void loop()
 {
-  keyPress();   //detect what kind of input is pressed
-  
-  if (work == true && processing == true)
+  if (work == true)   //work
   {
-    unsigned long redCurrentTime = millis();     //this keeps getting bigger
-  
-    if (redCurrentTime - previousTime >= timeInterval)
+    digitalWrite(redLed, HIGH);     //indicate its work mode
+    digitalWrite(greenLed, LOW);    //clear any indication for break mode
+    buttonWait();                   //press to start timer
+    processing = true;              
+    //25 minutes loop
+    for (int i = 0; i < 5; i++)
     {
-      previousTime = redCurrentTime;     //save the last currentTime to previousTime
-      if (redState == LOW)
-      {
-        Serial.println("red on");
-        redState = HIGH;
-      }
-  
-      else if (redState == HIGH)
-      {
-        Serial.println("red off");
-        redState = LOW;
-        timeCounter++;
-        Serial.print("sec: ");
-        Serial.println(timeCounter);
-      }
-      digitalWrite(redLed, redState);
+      checkHold();                  //check for any button input to stop or reset
+      flash(redLed);                //led flashes every second
     }
-  }
-
-  else if (work == false && processing == true)
-  {
-    unsigned long greenCurrentTime = millis();     //this keeps getting bigger
-  
-    if (greenCurrentTime - previousTime >= timeInterval)
-    {
-      previousTime = greenCurrentTime;     //save the last currentTime to previousTime
-      if (greenState == LOW)
-      {
-        Serial.println("green on");
-        greenState = HIGH;
-      }
-  
-      else if (greenState == HIGH)
-      {
-        Serial.println("green off");
-        greenState = LOW;
-        timeCounter++;
-        Serial.print("sec: ");
-        Serial.println(timeCounter);
-        
-      }
-      digitalWrite(greenLed, greenState);
-    }
-  }
-
-  if (work == true && timeCounter == 5)
-  {
+    
     work = false;
     processing = false;
-    timeCounter = 0;
   }
-
-  else if (work == false && timeCounter == 2)
+  
+  else if (work == false)       //break
   {
+    digitalWrite(greenLed, HIGH);
+    digitalWrite(redLed, LOW);
+    buttonWait();     //press button to start break
+    processing = true;
+    //5 minutes loop
+    for (int i = 0; i < 2; i++)
+    {
+      flash(greenLed);
+      checkHold();
+    }
+
     work = true;
     processing = false;
-    timeCounter = 0;
   }
 }
+//-----------------------------------------------------------
 
-void keyPress()
+//checks for what button combination is pressed
+void checkHold()
 {
+  pressLength = 0;
+  
   while (digitalRead(button) == HIGH)
   {
-    if (currentHoldTime % 1000 != 0 or currentHoldTime == 0)
+    digitalWrite(greenLed, HIGH);   //to indicate button was pressed
+    if (pressLength % 1000 != 0 or pressLength == 0)
     {
-      digitalWrite(greenLed, LOW);          //no flashing when it's not on the second
+      digitalWrite(redLed, LOW);          //no flashing when it's not on the second
     }
 
-    else if (currentHoldTime % 1000 == 0)     //flashing every second when holding down the button
+    else if (pressLength % 1000 == 0)     //flashing every second when holding down the button
     {
-      digitalWrite(greenLed, HIGH);
+      digitalWrite(redLed, HIGH);
     }
+  
     delay(100);
-    currentHoldTime += 100;
+    pressLength = pressLength + 100;
+
+    Serial.print("ms = ");
+    Serial.println(pressLength);
   }
 
-  if (digitalRead(button) == LOW && (currentHoldTime >= 3000))      //reset
-  { 
-    Serial.println("reset");
-    Serial.println("processing: false");
-    processing = false;
-    previousHold = currentHoldTime;
-    digitalWrite(redLed, LOW);
-    digitalWrite(greenLed, LOW);
-    resetFlash();
-    currentHoldTime = 0;
-    timeCounter = 0;
-    work = true;
-  }
+  digitalWrite(greenLed, LOW);
+  pauseLogic();
+}
 
-  else if (digitalRead(button) == LOW && (currentHoldTime >= 100))      //click
-  {
-    if (processing == true)
-    {
-      Serial.println("processing: false");
-      processing = false;
-    }
-    else if (processing == false)
-    {
-      Serial.println("processing: true");
-      processing = true;
-    }
-    previousHold = currentHoldTime;
-    digitalWrite(greenLed, LOW);
-    currentHoldTime = 0;
-  }
+void flash(int led)
+{ 
+  Serial.println("flash led");
+  digitalWrite(led, LOW);
+  delay(500);
+  digitalWrite(led, HIGH);
+  delay(500);
 }
 
 void resetFlash()
@@ -162,4 +115,37 @@ void resetFlash()
     digitalWrite(greenLed, LOW);
   }
 
+}
+
+void buttonWait()
+{
+  Serial.println("click to unpause");
+  while (digitalRead(button) == LOW)
+  {
+    delay(10);
+    Serial.println("pause");
+    if (digitalRead(button) == HIGH && pressLength >= 100)
+    {
+      Serial.println("unpause");
+    }
+  }
+}
+
+void pauseLogic()     //logic for what combination was held
+{
+  if (pressLength >= 3000)    //play reset flash when button is held for 3 seconds or more
+  {
+    resetFlash();
+    asm volatile ("jmp 0");
+  }
+  
+  else if (pressLength >= 100 && processing == true)
+  {
+    buttonWait();
+  }
+}
+
+void extra()
+{
+  
 }
