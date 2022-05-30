@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title >Survey Form</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <h1 id="title">Survey Form</h1>
+    <p id="description">Please fill in this survey as accurately as possible.</p>
+    <form id="survey-form">
+      <label id="name-label">Name
+        <input 
+          id="name" 
+          type="text" 
+          required
+          placeholder="name"/>
+      </label>
+
+      <label id="email-label">Email 
+        <input 
+          type="email"
+          id="email" 
+          required
+          placeholder="email"/>
+      </label>
+
+      <label id="number-label">Number
+        <input
+          id="number"
+          type="number"
+          min=0
+          max=99
+          required
+            placeholder="number"/>
+          
+<label id="detail">          
+      </label>
+      <select id="dropdown">
+        <option value="">(age)</option>
+        <option value="1">13-18</option>
+        <option value="2">19-29</option>
+        <option value="3">30-44</option>
+        <option value="4">45-64</option>
+        <option value="5">65+</option>
+      </select>
+      <label>
+      <input type="radio" name="gender" value="male"/>Male</label>
+      <input type="radio" name="gender" value="female"/>Female</label>
+      </label>
+
+      <label id="os">
+      <label><input type="checkbox" value="windows"/>Windows</label>
+      <label><input type="checkbox" value="mac"/>Mac</label>
+      <label><input type="checkbox" value="linux"/>Linux</label>
+      <label><input type="checkbox" value="chrome"/>Chrome</label>
+      <label><input type="checkbox" value="others"/>Others</label>
+      </label>
+
+      <textarea 
+        name="comments"
+        placeholder="additional comments"
+        >
+        </textarea>
+
+      <input type="submit" id="submit" value="Submit"/>
+    </form>
+  </body>
+</html>
