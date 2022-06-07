@@ -1,0 +1,27 @@
+body{
+    background-color: black;
+    color: white;
+    font-family: Georgia;
+  }
+  
+  h1, p, h2, #img-caption{
+    text-align: center;
+  }
+
+  h2{
+      padding: 3em;
+  }
+  
+  #image{
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  ul {
+  text-align: center;
+}
+
+li{
+    padding:5px;
+}
