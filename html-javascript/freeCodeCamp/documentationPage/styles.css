@@ -1,0 +1,45 @@
+header{
+    font-size:1.5rem;
+    padding:0.5rem 0 0.5rem 0;
+  }
+  
+  body{
+    font-family:menlo, Helvetica;
+    background-color:black;
+    color:#00ff00;
+  }
+  
+  .nav-link{
+    color:#00ff00;
+  }
+  
+  code{
+    font-size:1rem;
+  }
+  
+  #navbar ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+  }
+  
+  #navbar a{
+    display:block;
+    width:20%;
+  }
+  
+  #navbar{
+    float:left;
+  }
+  
+  #navbar ul li{
+    float:left;
+  }
+  
+  
+  @media(max-width: 600px){
+    body{
+      font-size:1.25rem;
+    }
+  }
