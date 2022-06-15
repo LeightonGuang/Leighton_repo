@@ -1,42 +1,59 @@
-header{
+header:not(#introduction){
+    font-family:menlo, Consolas;
     font-size:1.5rem;
     padding:0.5rem 0 0.5rem 0;
   }
   
+  #navbar {
+    position: fixed;
+    min-width: 290px;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 100%;
+    border-right: solid;
+    border-color: transparent;
+  }
+
+  #navbar header{
+    padding:15px 0 0 10px;
+  }
+
+  #navbar li{
+    list-style: none;
+    font-size: 1.25rem;
+    padding: 5px 0;
+  }
+
   body{
-    font-family:menlo, Helvetica;
+    font-family:menlo, Consolas;
     background-color:black;
     color:#00ff00;
   }
   
+  /*navbar links text*/
+
   .nav-link{
     color:#00ff00;
+    text-decoration: none;
   }
   
-  code{
-    font-size:1rem;
+  /*anything that is written in python code*/
+  .code{
+    font-size: 1rem;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+    max-width: 500px;
   }
-  
-  #navbar ul{
-    list-style-type:none;
-    margin:0;
-    padding:0;
-    overflow:hidden;
+
+  #main-doc {
+    position: absolute;
+    margin-left: 300px;
+    padding: 15px;
+    margin-bottom: 110px;
+    width:1000px;
   }
-  
-  #navbar a{
-    display:block;
-    width:20%;
-  }
-  
-  #navbar{
-    float:left;
-  }
-  
-  #navbar ul li{
-    float:left;
-  }
-  
   
   @media(max-width: 600px){
     body{

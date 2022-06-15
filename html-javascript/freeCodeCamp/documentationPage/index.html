@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Piano</title>
+    <title>Python Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
 
-<nav id="navbar"><header>Navigation bar</header>
+<nav id="navbar"><header>Python Documentation</header>
         <ul>
           <li><a class ="nav-link" href="#introduction">Introduction</a></li>
 
@@ -27,7 +27,10 @@
         <header>  
           Introduction
         </header>
-        <p>Python is one of the most common programming language for beginners because of its straight forward syntax that's easy to understand for people without programming experience. </p>
+        <p>
+          Python is one of the most common programming language for beginners because of 
+          its straight forward syntax that's easy to understand for people without programming
+           experience. </p>
 
         <p>
           What is included in this guide:
@@ -45,9 +48,9 @@
           Hello World
         </header>
         <p>To have <code>Hello World</code> printed in the console, we will need to do:</p>
-        <p>
+        <p class="code">
           <code>
-            print("Hello World")
+            > print("Hello World")
           </code>
         </p>
       </section>
@@ -57,9 +60,7 @@
           Variables
         </header>
         <p>
-          Variables are just like maths where we use x and y to store different values.
-          </p>
-        <p>
+          Variables are just like maths where we use x and y to store different values.<br>
           Here are a list of different types of variables in python:
           <ul>
             <li>String</li>
@@ -68,14 +69,22 @@
             <li>Float</li>
           </ul>
         </p>
-        <p>There are more variable types in python but these are all the ones you need to know for now.</p>
+        <p>
+          There are more variable types in python but these are all the ones you need to 
+          know for now.
+        </p>
         <p>
           To store a variable to given word, we can do:
         </p>
-        <p><code>name = "John"</code></p>
-        <p><code>x = 5</code></p>
-        <p><code>pass = True</code></p>
-        <p><code>pi = 3.14</code></p>
+
+        <p class="code">
+          <code>
+            > name = "John"<br>
+            > x = 5<br>
+            > pass = True<br>
+            > pi = 3.14<br>
+          </code>
+        </p>
       </section>
       
       <section class="main-section" id="operators">
@@ -95,19 +104,62 @@
         <p>
           Here are some examples of how to use these operators:
         </p>
-        <p><code>9 + 10</code></p>
-        <p><code>21 - 5</code></p>
-        <p><code>6 * 9</code></p>
-        <p><code>22 / 7</code></p>
+
+        <p class="code">
+          <code>
+            > 9 + 10<br>
+            > 21 - 5<br>
+            > 6 * 9<br>
+            > 22 / 7<br>
+          </code>
+        </p>
       </section>
 
       <section class="main-section" id="if_else">
         <header>
           If else
         </header>
-        <p></p>
-        <p></p>
+        <p>
+          When dealing with logics, the most used logic command in any programming language is 
+          the if else statement<br>
+        Here is an example of how to use an if else statement:</p>
+        <p class="code">
+          <code>
+            john = "male"<br>
+            y = 6<br>
+            <br>
+            if(john == "male"):<br>
+            &nbsp;&nbsp;print("John is a male")<br>
+            <br>
+            else:<br>
+            &nbsp;&nbsp;print("John is not a male")<br>
+          </code>
+        </p>
+
+        <p>
+          If there are multiple conditions in a logic, we will have to use else if. 
+          In python, else if is combined into a single word <code>elif</code>. Here 
+          is an example:
+        </p>
+
+        <p class="code">
+          <code>
+            x = 5<br>
+            y = 6<br>
+            <br>
+            if(x == y):<br>
+            &nbsp;&nbsp;print("x is equal to y")<br>
+            <br>
+            elif(x < y):<br>
+            &nbsp;&nbsp;print("x is small than y")<br>
+            <br>
+            elif(x > y):<br>
+            &nbsp;&nbsp;print("x is bigger than y")
+            <br>
+          </code>
+        </p>
       </section>
+
     </main>
   </body>
 </html>
