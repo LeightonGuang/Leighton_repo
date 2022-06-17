@@ -1,7 +1,16 @@
-header:not(#introduction){
-    font-family:menlo, Consolas;
-    font-size:1.5rem;
-    padding:0.5rem 0 0.5rem 0;
+html{
+  font-family:menlo, Consolas;
+  color:#00ff00;
+}
+
+
+header{
+  font-size:1.5rem;
+}
+
+
+.main-section header :not(#first-header){
+    padding:15px 0;
   }
   
   #navbar {
@@ -28,7 +37,7 @@ header:not(#introduction){
   body{
     font-family:menlo, Consolas;
     background-color:black;
-    color:#00ff00;
+    
   }
   
   /*navbar links text*/
