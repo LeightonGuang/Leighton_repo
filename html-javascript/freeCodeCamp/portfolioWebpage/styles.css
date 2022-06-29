@@ -5,12 +5,14 @@
   --purple: #432534;
   --light-green: #00C49A;
   --pink: #FFC2B4;
-  --pine: #0B927F;
+  --green: #0B927F;
 }
 
 *{
   margin:0;
   padding: 0;
+  top: 0;
+  left: 0;
 }
 
 html{
@@ -20,7 +22,8 @@ html{
 #navbar{
   position: fixed;
   background-color: var(--yellow);
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
   height: 3rem;
 }
 
@@ -48,6 +51,7 @@ html{
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
   justify-content: center;
   text-align: center;
   background-color: var(--dark-green);
@@ -65,13 +69,65 @@ html{
 }
 
 #projects{
-  background-color: var(--pine);
+  background-color: var(--green);
+  width: 100vw;
+  max-width: 100%;
 }
 
 #projects h2{
   text-align: center;
   color: white;
-  padding: 4rem;
+  padding: 4vw;
+}
+
+#project-container{
+  display: flex;
+  justify-content: center;
+}
+
+#projects ul{
+  margin: 0 auto;
+  width: 95vw;
+  max-width: 100%;
+}
+
+#projects li{
+  display: inline-block;
+  list-style-type: none;
+  width: 30vw;
+  margin: 5px auto;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.project-tile{
+  width: 30vw;
+  border: 4px solid var(--yellow);
+}
+
+.project-tile img{
+  width: 100%;
+  display: block;
+}
+
+.project-tile p{
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.img-description{
+  display: flex;
+  width: 100%;
+  height: 4vh;
+  background-color: var(--brown);
+  align-items: center;
+  justify-content: center;
+}
+
+#contact{
+  width: 100vw;
+  max-width: 100%;
 }
 
 #contact h2{
@@ -81,8 +137,22 @@ html{
   background-color: var(--light-green);
 }
 
-@media(max-width: 600px){
+@media(max-width: 660px){
+  h2{
+    font-size:1rem;
+  }
+
+  .project-tile p{
+    font-size: 0.75rem;
+  }
+}
+
+@media(max-width: 400px){
   body{
-    font-size:1.25rem;
+    font-size:1rem;
+  }
+
+  .project-tile p{
+    font-size: 0.5rem;
   }
 }
