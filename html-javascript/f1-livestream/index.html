@@ -9,18 +9,34 @@
   </head>
 
   <body>
-    <div id="stream"></div>
     <h1>Sigma live stream</h1>
-    <iframe
-      src="//f1livegp.me/f1/live.php"
-      name="frame"
-      scrolling="no"
-      frameborder="no"
-      allow="fullscreen"
-      align="center"
-      height="450px"
-      width="100%"
-    ></iframe>
+    <section class="streams">
+      <iframe
+        src="//f1livegp.me/f1/live.php"
+        name="frame"
+        scrolling="no"
+        frameborder="no"
+        allow="fullscreen"
+        align="center"
+        height="450px"
+        width="100%"
+      ></iframe>
+
+      <video
+        data-html5-video=""
+        preload="metadata"
+        src="blob:http://www.footy.to/fcb75b78-aade-41d4-8e95-6cc04636e7db"
+      >
+        <style class="clappr-style">
+          [data-html5-video] {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: block;
+          }
+        </style>
+      </video>
+    </section>
 
     <div id="names">
       <ul>
