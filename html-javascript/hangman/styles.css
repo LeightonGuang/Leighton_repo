@@ -3,17 +3,19 @@ h1{
   margin: 0;
 }
 
-#hangmanID p{
-  margin: 0;
+#hangmanID{
+  text-align: center;
+  font-size: 30px;
+}
+
+#underlineArrID{
+  text-align: center;
+  font-size: 30px;
 }
 
 #inputSectionID{
-  margin: auto;
-}
-
-#userInputID{
-  display: inline;
-  text-align: auto;
+  display: flex;
+  justify-content: center;
 }
 
 #underlineArrID{
