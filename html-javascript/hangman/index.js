@@ -159,6 +159,8 @@ function guessEnterButton(){
   
   }else{
     alert("Please enter a single alphabet character");
+    userInput.value = "";
+    return;
   }
 
   let counter = 0;
@@ -213,4 +215,5 @@ function resetVariables(){
   guessCounter = 0;
   underline();
   guess.innerHTML = "your guesses:";
+  hangmanID.innerHTML = (hangmanDiagram[0]);
 }
