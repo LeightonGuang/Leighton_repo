@@ -1,0 +1,21 @@
+h1{
+  text-align: center;
+  margin: 0;
+}
+
+#hangmanID p{
+  margin: 0;
+}
+
+#inputSectionID{
+  margin: auto;
+}
+
+#userInputID{
+  display: inline;
+  text-align: auto;
+}
+
+#underlineArrID{
+  text-align: center;
+}
