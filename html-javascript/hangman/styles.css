@@ -1,14 +1,29 @@
+:root{
+  --blue: #1446A0;
+  --red: #DB3069;
+  --yellow: #F5D547;
+  --beige: #EBEBD3;
+  --grey: #3C3C3B;
+}
+
+body{
+  background-color: var(--blue);
+}
+
 h1{
+  color: white;
   text-align: center;
   margin: 0;
 }
 
 #hangmanID{
+  color: var(--yellow);
   text-align: center;
   font-size: 30px;
 }
 
 #underlineArrID{
+  color: var(--yellow);
   text-align: center;
   font-size: 30px;
 }
@@ -22,6 +37,19 @@ h1{
   text-align: center;
 }
 
+#userInputID{
+  color: var(--beige);
+  width: 300px;
+  height: 30px;
+  border: 3px solid var(--yellow);
+  border-radius: 8px;
+  background: none;
+  margin-right: 10px;
+  font-size: 30px;
+}
+
 #guessID{
+  color: var(--red);
   text-align: center;
+  font-size: 30px;
 }

@@ -114,8 +114,6 @@ hangmanID.innerHTML = (hangmanDiagram[0]);
 //========================================
 
 newWord();
-wordToGet = wordToGet.toLowerCase();
-wordToGet = wordToGet.split("");
 
 //setup number of underlines for guessing
 
@@ -224,4 +222,6 @@ function resetVariables(){
 function newWord(){
   let index = Math.floor(Math.random() * (wordArr.length + 1));
   wordToGet = wordArr[index];
+  wordToGet = wordToGet.toLowerCase();
+  wordToGet = wordToGet.split("");
 }
