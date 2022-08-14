@@ -104,7 +104,7 @@ let hangmanDiagram = [
   "|____________________  \n"
 ]
 
-let wordArr = [];
+let wordArr = ["Leighton", "Guang"];
 let guessArr = [];
 let userInput = document.querySelector("#userInputID");
 let guess = document.querySelector("#guessID");
@@ -113,7 +113,7 @@ hangmanID.innerHTML = (hangmanDiagram[0]);
 
 //========================================
 
-let wordToGet = "leighton";
+newWord();
 wordToGet = wordToGet.toLowerCase();
 wordToGet = wordToGet.split("");
 
@@ -201,6 +201,7 @@ function guessEnterButton(){
 function gameRestart(){
   let again = confirm("Do you want to play again?");
   if(again){
+    newWord();
     resetVariables();
   }else{
     alert("gg");
@@ -216,4 +217,11 @@ function resetVariables(){
   underline();
   guess.innerHTML = "your guesses:";
   hangmanID.innerHTML = (hangmanDiagram[0]);
+}
+
+//========================================
+
+function newWord(){
+  let index = Math.floor(Math.random() * (wordArr.length + 1));
+  wordToGet = wordArr[index];
 }
