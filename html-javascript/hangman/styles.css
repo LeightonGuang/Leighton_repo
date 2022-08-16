@@ -79,6 +79,7 @@ h1{
   vertical-align: middle;
   border: none;
   font-size: 30px;
+  cursor: pointer;
 }
 
 #guessID{
