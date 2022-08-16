@@ -141,19 +141,20 @@ userInput.addEventListener("keydown", (e) => {
 function guessEnterButton(){
   let regex = /[a-z]/i;
   userInput = document.querySelector("#userInputID");
+  let letter = userInput.value;
   guess = document.querySelector("#guessID");
   
   //check if user entered a single alphabet character
-  if(userInput.value.length == 1 && regex.test(userInput)){
+  if(letter.length == 1 && regex.test(userInput)){
     //check for duplicate
     for (let i in guessArr){
-      if(userInput.value == guessArr[i]){
+      if(letter == guessArr[i]){
         alert("duplicate guess");
         userInput.value = "";
         return;
       }
     }
-    guessArr.push((userInput.value).toLowerCase());
+    guessArr.push((letter).toLowerCase());
   
   }else{
     alert("Please enter a single alphabet character");
@@ -164,9 +165,9 @@ function guessEnterButton(){
   let counter = 0;
   for (let i in wordToGet){
     //user guessed a correct character
-    if(wordToGet[i] == userInput.value){
+    if(wordToGet[i] == letter){
       //alert("you guessed a right character");
-      underlineArr[i] = userInput.value;
+      underlineArr[i] = letter;
       underlineArrID.innerHTML = underlineArr;
       counter++;
 
