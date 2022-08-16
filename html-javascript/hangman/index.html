@@ -9,19 +9,22 @@
   </head>
   <body>
     <h1>Hangman</h1>
-    <pre id="hangmanID"></pre>
-    <p id="underlineArrID">Underlines</p>
-    <div id="inputSectionID">
-      
-      <input type="text" id="userInputID" placeholder="guess a character" />
-      <input
-        type="button"
-        id="enterButtonID"
-        value="guess"
-        onclick="guessEnterButton()"
-      />
+    <div id="page-grid">
+      <pre class="gridClass" id="hangmanID"></pre>
+      <div class="IO-grid">
+        <p id="underlineArrID">Underlines</p>
+        <p id="guessID">your guesses:</p>
+        <div id="inputSectionID">
+          <input type="text" id="userInputID" placeholder="_" />
+          <input
+            type="button"
+            id="enterButtonID"
+            value="guess"
+            onclick="guessEnterButton()"
+          />
+        </div>
+      </div>
     </div>
-    <p id="guessID">your guesses:</p>
     <script src="index.js"></script>
   </body>
 </html>

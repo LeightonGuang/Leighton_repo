@@ -6,50 +6,83 @@
   --grey: #3C3C3B;
 }
 
-body{
-  background-color: var(--blue);
-}
-
-h1{
-  color: white;
-  text-align: center;
+*{
   margin: 0;
 }
 
-#hangmanID{
-  color: var(--yellow);
+body{
+  background-color: var(--beige);
+  font-family: monospace, sans-serif;
+}
+
+h1{
+  color: var(--blue);
   text-align: center;
+  margin: 25px 0;
+  font-size: 40px;
+}
+
+#page-grid{
+  display: grid;
+  grid-template-columns: min-content min-content;
+  width: 100%;
+  margin: 40px 0 0 40px;
+}
+
+.IO-grid{
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+  width: min-content;
+  gap: 5rem;
+}
+
+#hangmanID{
+  color: var(--blue);
   font-size: 30px;
+  background-color: var(--yellow);
+  margin-right: 250px;
+  text-align: center;
 }
 
 #underlineArrID{
-  color: var(--yellow);
-  text-align: center;
+  color: var(--red);
   font-size: 30px;
+  width: min-content;
+  height: min-content;
 }
+
 
 #inputSectionID{
-  display: flex;
-  justify-content: center;
-}
-
-#underlineArrID{
-  text-align: center;
+  align-items: center;
+  width: 312px;
 }
 
 #userInputID{
-  color: var(--beige);
-  width: 300px;
+  text-align: center;
+  color: var(--blue);
+  width: 30px;
   height: 30px;
   border: 3px solid var(--yellow);
   border-radius: 8px;
   background: none;
-  margin-right: 10px;
+  font-size: 30px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#userInputID:hover{
+  border: 3px solid var(--red);
+}
+
+#enterButtonID{
+  display: inline-block;
+  vertical-align: middle;
+  border: none;
   font-size: 30px;
 }
 
 #guessID{
   color: var(--red);
-  text-align: center;
   font-size: 30px;
 }
+
