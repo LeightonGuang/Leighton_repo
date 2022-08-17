@@ -113,7 +113,16 @@ hangmanID.innerHTML = (hangmanDiagram[0]);
 
 //========================================
 
+function newWord(){
+  let index = Math.floor(Math.random() * (wordArr.length + 1));
+  wordToGet = wordArr[index];
+  wordToGet = wordToGet.toLowerCase();
+  wordToGet = wordToGet.split("");
+}
+
 newWord();
+
+//========================================
 
 //setup number of underlines for guessing
 
@@ -140,7 +149,7 @@ userInput.addEventListener("keydown", (e) => {
 
 function guessEnterButton(){
   let regex = /[a-z]/i;
-  userInput = document.querySelector("#userInputID");
+  userInput = document.querySelector("#userInputID").toLowerCase;
   let letter = userInput.value;
   guess = document.querySelector("#guessID");
   
@@ -149,7 +158,7 @@ function guessEnterButton(){
     //check for duplicate
     for (let i in guessArr){
       if(letter == guessArr[i]){
-        alert("duplicate guess");
+        alert("duplicate letter");
         userInput.value = "";
         return;
       }
@@ -219,10 +228,3 @@ function resetVariables(){
 }
 
 //========================================
-
-function newWord(){
-  let index = Math.floor(Math.random() * (wordArr.length + 1));
-  wordToGet = wordArr[index];
-  wordToGet = wordToGet.toLowerCase();
-  wordToGet = wordToGet.split("");
-}

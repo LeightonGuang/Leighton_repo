@@ -1,9 +1,9 @@
 :root{
-  --blue: #1446A0;
-  --red: #DB3069;
-  --yellow: #F5D547;
-  --beige: #EBEBD3;
-  --grey: #3C3C3B;
+  --dark_shades: #231c3a;
+  --dark_accent: #4c61b1;
+  --main_colour: #5071a5;
+  --light_accent:#6baae9;
+  --white:#ebedf2;
 }
 
 *{
@@ -11,37 +11,41 @@
 }
 
 body{
-  background-color: var(--beige);
+  background-color: var(--white);
+  color: var(--dark_shades);
   font-family: monospace, sans-serif;
 }
 
 h1{
-  color: var(--blue);
+  background-color: var(--main_colour);
+  color: var(--white);
   text-align: center;
-  margin: 25px 0;
+  padding: 25px 0;
   font-size: 40px;
+}
+
+#hangmanID{
+  color: var(--white);
+  font-size: 30px;
+  background-color: var(--dark_accent);
+  border-radius: 10px;
+  margin-right: 250px;
+  text-align: center;
 }
 
 #page-grid{
   display: grid;
   grid-template-columns: min-content min-content;
-  width: 100%;
-  margin: 40px 0 0 40px;
+  width: min-content;
+  margin: auto;
+  padding-top: 100px;
 }
 
 .IO-grid{
   display: grid;
-  grid-template-rows: min-content min-content min-content;
+  grid-template-rows: min-content min-content min-content min-content;
   width: min-content;
   gap: 5rem;
-}
-
-#hangmanID{
-  color: var(--blue);
-  font-size: 30px;
-  background-color: var(--yellow);
-  margin-right: 250px;
-  text-align: center;
 }
 
 #underlineArrID{
@@ -59,13 +63,13 @@ h1{
 
 #userInputID{
   text-align: center;
-  color: var(--blue);
+  color: var(--white);
   width: 30px;
   height: 30px;
-  border: 3px solid var(--yellow);
+  border: none;
   border-radius: 8px;
-  background: none;
-  font-size: 30px;
+  background-color: var(--main_colour);
+  font-size: 25px;
   display: inline-block;
   vertical-align: middle;
 }
@@ -77,13 +81,22 @@ h1{
 #enterButtonID{
   display: inline-block;
   vertical-align: middle;
-  border: none;
   font-size: 30px;
   cursor: pointer;
+  border: none;
+  background-color: var(--light_accent);
+  color: var(--dark_shades);
+  border-radius: 4px;
 }
 
 #guessID{
-  color: var(--red);
   font-size: 30px;
 }
 
+#resetButtonID{
+  background: rgb(75, 75, 75);
+  color: rgb(122, 122, 122);
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+}

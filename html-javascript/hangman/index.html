@@ -15,7 +15,7 @@
         <p id="underlineArrID">Underlines</p>
         <p id="guessID">your guesses:</p>
         <div id="inputSectionID">
-          <input type="text" id="userInputID" placeholder="_" />
+          <input type="text" id="userInputID" placeholder=" " />
           <input
             type="button"
             id="enterButtonID"
@@ -23,6 +23,13 @@
             onclick="guessEnterButton()"
           />
         </div>
+        <input
+          type="button"
+          class="IO-grid"
+          id="resetButtonID"
+          value="restart"
+          onclick="gameRestart()"
+        />
       </div>
     </div>
     <script src="index.js"></script>
