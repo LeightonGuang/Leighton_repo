@@ -149,21 +149,20 @@ userInput.addEventListener("keydown", (e) => {
 
 function guessEnterButton(){
   let regex = /[a-z]/i;
-  userInput = document.querySelector("#userInputID").toLowerCase;
-  let letter = userInput.value;
+  userInput = document.querySelector("#userInputID");
   guess = document.querySelector("#guessID");
   
   //check if user entered a single alphabet character
-  if(letter.length == 1 && regex.test(userInput)){
+  if(userInput.value.length == 1 && regex.test(userInput)){
     //check for duplicate
     for (let i in guessArr){
-      if(letter == guessArr[i]){
+      if(userInput.value == guessArr[i]){
         alert("duplicate letter");
         userInput.value = "";
         return;
       }
     }
-    guessArr.push((letter).toLowerCase());
+    guessArr.push((userInput.value).toLowerCase());
   
   }else{
     alert("Please enter a single alphabet character");
@@ -174,9 +173,9 @@ function guessEnterButton(){
   let counter = 0;
   for (let i in wordToGet){
     //user guessed a correct character
-    if(wordToGet[i] == letter){
+    if(wordToGet[i] == userInput.value){
       //alert("you guessed a right character");
-      underlineArr[i] = letter;
+      underlineArr[i] = userInput.value;
       underlineArrID.innerHTML = underlineArr;
       counter++;
 
@@ -211,6 +210,9 @@ function gameRestart(){
   if(again){
     newWord();
     resetVariables();
+    underline();
+    userInput.value = "";
+    
   }else{
     alert("gg");
   }
@@ -222,7 +224,6 @@ function resetVariables(){
   underlineArr = [];
   guessArr = [];
   guessCounter = 0;
-  underline();
   guess.innerHTML = "your guesses:";
   hangmanID.innerHTML = (hangmanDiagram[0]);
 }
