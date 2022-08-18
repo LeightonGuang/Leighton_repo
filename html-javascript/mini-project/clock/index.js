@@ -28,7 +28,7 @@ function changeTime(){
 
   if(minutes.length == 2){
     minutes1.innerHTML = minutes[0];
-    minutes2.innerHTML = minutes[0];
+    minutes2.innerHTML = minutes[1];
   }else{
     minutes1.innerHTML = 0;
     minutes2.innerHTML = minutes;
