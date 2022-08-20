@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+*{
+	margin: 0;
+}
+
+body{
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.clock-body{
+  background-color: rgb(54, 54, 54);
+  width: min-content;
+  height: min-content;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.cell {
+	width: min-content;
+  height: min-content;
+	padding: 4px;
+	background-color: black;
+  perspective: 400px;
+	z-index: 0;
+}
+
+.cell:hover .flap {
+  transform: rotateX(-0.5turn);
+}
+
+.flap {
+	width: 95px;
+  height: 130px;
+	font-size: 100px;
+	color: white;
+	background-color: rgb(37, 37, 37);
+  position: relative;
+  text-align: center;
+	border-radius: 4px;
+}
+
+.flap-animation{
+	transition: .1s;
+  transform-style: preserve-3d;
+}
+
+.flap-line{
+  position: absolute;
+ 	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+  z-index: 999;
+  background-color: black;
+  width: 96px;
+  height: 3px;
+}
+
+.flap-background{
+	width: 95px;
+  height: 130px;
+	color: white;
+	font-size: 100px;
+	background-color: rgb(37, 37, 37);
+	text-align: center;
+	border-radius: 4px;
+	position: absolute;
+}
+
+.flap-front{
+  position: absolute;
+  width: min-content;
+  height: min-content;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+  backface-visibility: hidden;
+}
+
+.flap-back {
+	backface-visibility: hidden;
+  transform: rotateX(-0.5turn);
+}
