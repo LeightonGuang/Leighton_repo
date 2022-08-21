@@ -55,7 +55,7 @@ function updateTime() {
 	}
 }
 
-function flip(front, back, frontID, backID, backgroundID, arrIndex) {
+function flip(back, frontID, backID, backgroundID, arrIndex) {
 	if (showFront[arrIndex]) {
 		backgroundID.innerHTML = back;
 		backID.innerHTML = back;
@@ -82,36 +82,36 @@ function flip(front, back, frontID, backID, backgroundID, arrIndex) {
 
 function flipTime() {
 	if (currentDisplay[0] != hours[0]) {
-		flip(currentDisplay[0], hours[0], h1f, h1b, h1bg, 0);
+		flip(hours[0], h1f, h1b, h1bg, 0);
 	}
 	if (currentDisplay[1] != hours[1]) {
-		flip(currentDisplay[1], hours[1], h2f, h2b, h2bg, 1);
+		flip(hours[1], h2f, h2b, h2bg, 1);
 	}
 
 	if (currentDisplay[2] == ":") {
-		flip(":", " ", colon_f[0], colon_b[0], colon_bg[0], 2);
+		flip(" ", colon_f[0], colon_b[0], colon_bg[0], 2);
 	} else {
-		flip(" ", ":", colon_f[0], colon_b[0], colon_bg[0], 2);
+		flip(":", colon_f[0], colon_b[0], colon_bg[0], 2);
 	}
 
 	if (currentDisplay[3] != minutes[0]) {
-		flip(currentDisplay[3], minutes[0], m1f, m1b, m1bg, 3);
+		flip(minutes[0], m1f, m1b, m1bg, 3);
 	}
 	if (currentDisplay[4] != minutes[1]) {
-		flip(currentDisplay[4], minutes[1], m2f, m2b, m2bg, 4);
+		flip(minutes[1], m2f, m2b, m2bg, 4);
 	}
-	
+
 	if (currentDisplay[5] == ":") {
-		flip(":", " ", colon_f[1], colon_b[1], colon_bg[1], 5);
+		flip(" ", colon_f[1], colon_b[1], colon_bg[1], 5);
 	} else {
-		flip(" ", ":", colon_f[1], colon_b[1], colon_bg[1], 5);
+		flip(":", colon_f[1], colon_b[1], colon_bg[1], 5);
 	}
-	
+
 	if (currentDisplay[6] != seconds[0]) {
-		flip(currentDisplay[6], seconds[0], s1f, s1b, s1bg, 6);
+		flip(seconds[0], s1f, s1b, s1bg, 6);
 	}
 	if (currentDisplay[7] != seconds[1]) {
-		flip(currentDisplay[7], seconds[1], s2f, s2b, s2bg, 7);
+		flip(seconds[1], s2f, s2b, s2bg, 7);
 	}
 }
 
