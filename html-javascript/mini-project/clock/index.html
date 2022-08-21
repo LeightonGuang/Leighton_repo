@@ -1,145 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Clock</title>
-	<link rel="stylesheet" href="styles.css" />
-</head>
+  <body>
+    <h1>Clock</h1>
+    <div class="clock-body">
+      <div id="clock-grid">
+        <div class="cell">
+          <div class="flap-background">
+            <div id="h1bg">0</div>
+          </div>
+          <div class="flap flap-animation">
+            <div class="flap-front">
+              <div id="h1f">0</div>
+              <div class="flap-line"></div>
+            </div>
+            <div class="flap-back">
+              <div id="h1b">0</div>
+              <div class="flap-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="flap-background">
+            <div id="h2bg">0</div>
+          </div>
+          <div class="flap flap-animation">
+            <div class="flap-front">
+              <div id="h2f">0</div>
+              <div class="flap-line"></div>
+            </div>
+            <div class="flap-back">
+              <div id="h2b">0</div>
+              <div class="flap-line"></div>
+            </div>
+          </div>
+        </div>
 
-<body>
-  <h1>Clock</h1>
-	<div class="clock-body">
-		<div id="clock-grid">
-			<div class="cell">
-				<div class="flap-background">
-					<div id="h1bg">0</div>
-				</div>
-				<div class="flap flap-animation">
-					<div class="flap-front">
-						<div id="h1f">0</div>
-						<div class="flap-line"></div>
-					</div>
-					<div class="flap-back">
-						<div id="h1b">0</div>
-						<div class="flap-line"></div>
-					</div>
-				</div>
-			</div>
-			<div class="cell">
-				<div class="flap-background">
-					<div id="h2bg">0</div>
-				</div>
-				<div class="flap flap-animation">
-					<div class="flap-front">
-						<div id="h2f">0</div>
-						<div class="flap-line"></div>
-					</div>
-					<div class="flap-back">
-						<div id="h2b">0</div>
-						<div class="flap-line"></div>
-					</div>
-				</div>
-			</div>
+        <div class="cell">
+          <div class="flap-background">
+            <div class="colon-bg"> </div>
+          </div>
+          <div class="flap flap-animation">
+            <div class="flap-front">
+              <div class="colon-f">:</div>
+              <div class="flap-line"></div>
+            </div>
+            <div class="flap-back">
+              <div class="colon-b"> </div>
+              <div class="flap-line"></div>
+            </div>
+          </div>
+        </div>
 
-			<div class="cell">
-				<div class="flap-background">
-					<div class="colon-bg"> </div>
-				</div>
-				<div class="flap flap-animation">
-					<div class="flap-front">
-						<div class="colon-f">:</div>
-						<div class="flap-line"></div>
-					</div>
-					<div class="flap-back">
-						<div class="colon-b"> </div>
-						<div class="flap-line"></div>
-					</div>
-				</div>
-			</div>
+        <div class="cell">
+          <div class="flap-background">
+            <div id="m1bg">0</div>
+          </div>
+          <div class="flap flap-animation">
+            <div class="flap-front">
+              <div id="m1f">0</div>
+              <div class="flap-line"></div>
+            </div>
+            <div class="flap-back">
+              <div id="m1b">0</div>
+              <div class="flap-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="flap-background">
+            <div id="m2bg">0</div>
+          </div>
+          <div class="flap flap-animation">
+            <div class="flap-front">
+              <div id="m2f">0</div>
+              <div class="flap-line"></div>
+            </div>
+            <div class="flap-back">
+              <div id="m2b">0</div>
+              <div class="flap-line"></div>
+            </div>
+          </div>
+        </div>
 
-			<div class="cell">
-				<div class="flap-background">
-					<div id="m1bg">0</div>
-				</div>
-				<div class="flap flap-animation">
-					<div class="flap-front">
-						<div id="m1f">0</div>
-						<div class="flap-line"></div>
-					</div>
-					<div class="flap-back">
-						<div id="m1b">0</div>
-						<div class="flap-line"></div>
-					</div>
-				</div>
-			</div>
-			<div class="cell">
-				<div class="flap-background">
-					<div id="m2bg">0</div>
-				</div>
-				<div class="flap flap-animation">
-					<div class="flap-front">
-						<div id="m2f">0</div>
-						<div class="flap-line"></div>
-					</div>
-					<div class="flap-back">
-						<div id="m2b">0</div>
-						<div class="flap-line"></div>
-					</div>
-				</div>
-			</div>
+        <div class="cell">
+          <div class="flap-background">
+            <div class="colon-bg"> </div>
+          </div>
+          <div class="flap flap-animation">
+            <div class="flap-front">
+              <div class="colon-f">:</div>
+              <div class="flap-line"></div>
+            </div>
+            <div class="flap-back">
+              <div class="colon-b"> </div>
+              <div class="flap-line"></div>
+            </div>
+          </div>
+        </div>
 
-			<div class="cell">
-				<div class="flap-background">
-					<div class="colon-bg"> </div>
-				</div>
-				<div class="flap flap-animation">
-					<div class="flap-front">
-						<div class="colon-f">:</div>
-						<div class="flap-line"></div>
-					</div>
-					<div class="flap-back">
-						<div class="colon-b"> </div>
-						<div class="flap-line"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="cell">
-				<div class="flap-background">
-					<div id="s1bg">0</div>
-				</div>
-				<div class="flap flap-animation">
-					<div class="flap-front">
-						<div id="s1f">0</div>
-						<div class="flap-line"></div>
-					</div>
-					<div class="flap-back">
-						<div id="s1b">0</div>
-						<div class="flap-line"></div>
-					</div>
-				</div>
-			</div>
-			<div class="cell">
-				<div class="flap-background">
-					<div id="s2bg">0</div>
-				</div>
-				<div class="flap flap-animation">
-					<div class="flap-front">
-						<div id="s2f">0</div>
-						<div class="flap-line"></div>
-					</div>
-					<div class="flap-back">
-						<div id="s2b">0</div>
-						<div class="flap-line"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-  <script src="index.js"></script>
-</body>
-
+        <div class="cell">
+          <div class="flap-background">
+            <div id="s1bg">0</div>
+          </div>
+          <div class="flap flap-animation">
+            <div class="flap-front">
+              <div id="s1f">0</div>
+              <div class="flap-line"></div>
+            </div>
+            <div class="flap-back">
+              <div id="s1b">0</div>
+              <div class="flap-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="flap-background">
+            <div id="s2bg">0</div>
+          </div>
+          <div class="flap flap-animation">
+            <div class="flap-front">
+              <div id="s2f">0</div>
+              <div class="flap-line"></div>
+            </div>
+            <div class="flap-back">
+              <div id="s2b">0</div>
+              <div class="flap-line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
 </html>
