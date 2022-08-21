@@ -1,48 +1,112 @@
 let lastTime, hours, minutes, seconds;
+let degree = [0, 0, 0, 0, 0, 0, 0, 0];
+let currentDisplay = [0, 0, 0, 0, 0, 0, 0, 0];
+let showFront = [true, true, true, true, true, true, true, true];
 
-let hours1 = document.getElementById('hours1');
-let hours2 = document.getElementById('hours2');
-let minutes1 = document.getElementById('minutes1');
-let minutes2 = document.getElementById('minutes2');
-let seconds1 = document.getElementById('seconds1');
-let seconds2 = document.getElementById('seconds2');
+let h1f = document.querySelector("#h1f");
+let h1b = document.querySelector("#h1b");
+let h1bg = document.querySelector("#h1bg");
 
-function getTime(){
-  hours = (new Date().getHours()).toString();
-  minutes = (new Date().getMinutes()).toString();
-  seconds = (new Date().getSeconds()).toString();
+let h2f = document.querySelector("#h2f");
+let h2b = document.querySelector("#h2b");
+let h2bg = document.querySelector("#h2bg");
 
-  lastTime = (`${hours} : ${minutes} : ${seconds}`);
-  console.log(`${hours} : ${minutes} : ${seconds}`);
+let colon_f = document.querySelectorAll(".colon-f");
+let colon_b = document.querySelectorAll(".colon-b");
+let colon_bg = document.querySelectorAll(".colon-bg");
+
+let m1f = document.querySelector("#m1f");
+let m1b = document.querySelector("#m1b");
+let m1bg = document.querySelector("#m1bg");
+
+let m2f = document.querySelector("#m2f");
+let m2b = document.querySelector("#m2b");
+let m2bg = document.querySelector("#m2bg");
+
+let s1f = document.querySelector("#s1f");
+let s1b = document.querySelector("#s1b");
+let s1bg = document.querySelector("#s1bg");
+
+let s2f = document.querySelector("#s2f");
+let s2b = document.querySelector("#s2b");
+let s2bg = document.querySelector("#s2bg");
+
+let flap = document.querySelectorAll(".flap");
+
+function updateTime() {
+	hours = new Date().getHours().toString();
+	minutes = new Date().getMinutes().toString();
+	seconds = new Date().getSeconds().toString();
+
+	if (hours.length == 1) {
+		hours = "0" + hours;
+	}
+	if (minutes.length == 1) {
+		seconds = "0" + seconds;
+	}
+	if (seconds.length == 1) {
+		seconds = "0" + seconds;
+	}
 }
 
-function changeTime(){
-  getTime();
-  if(hours.length == 2){
-    hours1.innerHTML = hours[0];
-    hours2.innerHTML = hours[1];
-  }else{
-    hours1.innerHTML = 0;
-    hours2.innerHTML = hours;
-  }
-
-  if(minutes.length == 2){
-    minutes1.innerHTML = minutes[0];
-    minutes2.innerHTML = minutes[1];
-  }else{
-    minutes1.innerHTML = 0;
-    minutes2.innerHTML = minutes;
-  }
-
-  if(seconds.length == 2){
-    seconds1.innerHTML = seconds[0];
-    seconds2.innerHTML = seconds[1];
-  }else{
-    seconds1.innerHTML = 0;
-    seconds2.innerHTML = seconds;
-  }
+function flip(front, back, frontID, backID, backgroundID, arrIndex) {
+	if (showFront[arrIndex]) {
+		backgroundID.innerHTML = back;
+		frontID.innerHTML = front;
+		backID.innerHTML = back;
+		showFront[arrIndex] = false;
+	} else if (showFront[arrIndex] == false) {
+		backgroundID.innerHTML = front;
+		frontID.innerHTML = back;
+		backID.innerHTML = front;
+		showFront[arrIndex] = true;
+	}
+	degree[arrIndex] -= 180;
+	flap[arrIndex].style.transform = `rotateX(${degree[arrIndex]}deg)`;
+	currentDisplay = [
+		hours[0],
+		hours[1],
+		":",
+		minutes[0],
+		minutes[1],
+		":",
+		seconds[0],
+		seconds[1]
+	];
 }
 
-getTime();
+function colon_blink() {
+	flip(" ", ":", colon_f[0], colon_b[0], colon_bg[0], 2);
+	flip(" ", ":", colon_f[1], colon_b[1], colon_bg[1], 5);
+}
 
-setInterval(changeTime, 1000);
+function flipTime() {
+	updateTime();
+	if (currentDisplay[0] != hours[0]) {
+		flip(currentDisplay[0], hours[0], h1f, h1b, h1bg, 0);
+	}
+	if (currentDisplay[1] != hours[1]) {
+		flip(currentDisplay[1], hours[1], h2f, h2b, h2bg, 1);
+	}
+	if (currentDisplay[3] != minutes[0]) {
+		flip(currentDisplay[3], minutes[0], m1f, m1b, m1bg, 3);
+	}
+	if (currentDisplay[4] != minutes[1]) {
+		flip(currentDisplay[4], minutes[1], m2f, m2b, m2bg, 4);
+	}
+	if (currentDisplay[6] != seconds[0]) {
+		flip(currentDisplay[6], seconds[0], s1f, s1b, s1bg, 6);
+	}
+	if (currentDisplay[7] != seconds[1]) {
+		flip(currentDisplay[7], seconds[1], s2f, s2b, s2bg, 7);
+	}
+}
+
+function run() {
+	colon_blink();
+	flipTime();
+}
+
+flipTime();
+updateTime();
+setInterval(run, 1000);
