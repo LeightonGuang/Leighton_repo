@@ -1,69 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
-*{
-  margin: 0;
+* {
+	margin: 0;
+	font-family: "Roboto Mono", monospace;
 }
 
 body{
-  font-family: 'Roboto Mono', monospace;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 h1{
-  color: black;
-  text-align: center;
-  font-size: 50px;
-  margin: 15px;
+	position: absolute;
+	top: 0%;
+	margin: 10px;
 }
 
-.clock-body{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(54, 54, 54);
-  width: min-content;
-  height: min-content;
-  padding: 30px;
-  border-radius: 5px;
+#clock-grid {
+	display: grid;
+	grid-auto-flow: column;
+	width: min-content;
+	height: min-content;
+	gap: 40px;
 }
 
-.clock-grid{
-  display: grid;
-  grid-auto-flow: column;
-  width: min-content;
-  height: min-content;
-  justify-content: center;
-  gap: 30px;
-  font-size: 100px;
-  margin: auto;
+.clock-body {
+	background-color: rgb(54, 54, 54);
+	width: min-content;
+	height: min-content;
+	padding: 30px;
+	border-radius: 5px;
 }
 
-.flap{
-  position: relative;
-  text-align: center;
-  width: 95px;
-  height: 130px;
-  background-color: rgb(37, 37, 37);
-  border: 4px solid black;
-  color: white;
-  border-radius: 4px;
+.cell {
+	position: relative;
+	width: min-content;
+	height: min-content;
+	padding: 4px;
+	background-color: black;
+	perspective: 400px;
+	z-index: 0;
 }
 
-.flap__line{
-  position: absolute;
-  align-content: center;
-  z-index: 10;
-  top: 50%;
-  background-color: black;
-  width: 95px;
-  height: 3px;
+.flap {
+	width: 95px;
+	height: 130px;
+	font-size: 100px;
+	color: white;
+	background-color: rgb(37, 37, 37);
+	position: relative;
+	text-align: center;
+	border-radius: 4px;
 }
 
-.flap{
-  transition: 0.5s;
-  transform-style: preserve-3d;
+.flap-animation {
+	transition: 0.15s;
+	transform-style: preserve-3d;
 }
 
-.cell:hover .flap{
-  transform: rotateX(.5turn);
+.flap-line {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+	background-color: black;
+	width: 96px;
+	height: 3px;
+}
+
+.flap-background {
+	width: 95px;
+	height: 130px;
+	color: white;
+	font-size: 100px;
+	background-color: rgb(37, 37, 37);
+	text-align: center;
+	border-radius: 4px;
+	position: absolute;
+}
+
+.flap-front {
+	position: absolute;
+	width: min-content;
+	height: min-content;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	backface-visibility: hidden;
+}
+
+.flap-back {
+	backface-visibility: hidden;
+	transform: rotateX(-0.5turn);
 }

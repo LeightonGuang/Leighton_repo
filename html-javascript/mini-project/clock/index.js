@@ -40,60 +40,73 @@ function updateTime() {
 
 	if (hours.length == 1) {
 		hours = "0" + hours;
+	} else if (hours.length == 0) {
+		hours = "00";
 	}
 	if (minutes.length == 1) {
-		seconds = "0" + seconds;
+		minutes = "0" + minutes;
+	} else if (minutes.length == 0) {
+		minutes = "00";
 	}
 	if (seconds.length == 1) {
 		seconds = "0" + seconds;
+	} else if (seconds.length == 0) {
+		seconds = "00";
 	}
 }
 
 function flip(front, back, frontID, backID, backgroundID, arrIndex) {
 	if (showFront[arrIndex]) {
 		backgroundID.innerHTML = back;
-		frontID.innerHTML = front;
 		backID.innerHTML = back;
 		showFront[arrIndex] = false;
 	} else if (showFront[arrIndex] == false) {
-		backgroundID.innerHTML = front;
+		backgroundID.innerHTML = back;
 		frontID.innerHTML = back;
-		backID.innerHTML = front;
 		showFront[arrIndex] = true;
 	}
 	degree[arrIndex] -= 180;
 	flap[arrIndex].style.transform = `rotateX(${degree[arrIndex]}deg)`;
+	//don't move currentDisplay
 	currentDisplay = [
-		hours[0],
-		hours[1],
-		":",
-		minutes[0],
-		minutes[1],
-		":",
-		seconds[0],
-		seconds[1]
+		h1bg.innerHTML,
+		h2bg.innerHTML,
+		colon_bg[0].innerHTML,
+		m1bg.innerHTML,
+		m2bg.innerHTML,
+		colon_bg[1].innerHTML,
+		s1bg.innerHTML,
+		s2bg.innerHTML
 	];
 }
 
-function colon_blink() {
-	flip(" ", ":", colon_f[0], colon_b[0], colon_bg[0], 2);
-	flip(" ", ":", colon_f[1], colon_b[1], colon_bg[1], 5);
-}
-
 function flipTime() {
-	updateTime();
 	if (currentDisplay[0] != hours[0]) {
 		flip(currentDisplay[0], hours[0], h1f, h1b, h1bg, 0);
 	}
 	if (currentDisplay[1] != hours[1]) {
 		flip(currentDisplay[1], hours[1], h2f, h2b, h2bg, 1);
 	}
+
+	if (currentDisplay[2] == ":") {
+		flip(":", " ", colon_f[0], colon_b[0], colon_bg[0], 2);
+	} else {
+		flip(" ", ":", colon_f[0], colon_b[0], colon_bg[0], 2);
+	}
+
 	if (currentDisplay[3] != minutes[0]) {
 		flip(currentDisplay[3], minutes[0], m1f, m1b, m1bg, 3);
 	}
 	if (currentDisplay[4] != minutes[1]) {
 		flip(currentDisplay[4], minutes[1], m2f, m2b, m2bg, 4);
 	}
+	
+	if (currentDisplay[5] == ":") {
+		flip(":", " ", colon_f[1], colon_b[1], colon_bg[1], 5);
+	} else {
+		flip(" ", ":", colon_f[1], colon_b[1], colon_bg[1], 5);
+	}
+	
 	if (currentDisplay[6] != seconds[0]) {
 		flip(currentDisplay[6], seconds[0], s1f, s1b, s1bg, 6);
 	}
@@ -103,10 +116,9 @@ function flipTime() {
 }
 
 function run() {
-	colon_blink();
+	updateTime();
 	flipTime();
 }
 
-flipTime();
 updateTime();
-setInterval(run, 1000);
+setInterval(run, 500);
