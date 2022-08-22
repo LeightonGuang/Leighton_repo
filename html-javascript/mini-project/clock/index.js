@@ -53,6 +53,9 @@ function updateTime() {
 	} else if (seconds.length == 0) {
 		seconds = "00";
 	}
+	if (hours == "00"){
+		hours = "12";
+	}
 }
 
 function flip(back, frontID, backID, backgroundID, arrIndex) {
