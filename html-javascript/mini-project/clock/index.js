@@ -1,4 +1,5 @@
 let lastTime, hours, minutes, seconds;
+let am_pm = document.querySelector("#am-pm");
 let degree = [0, 0, 0, 0, 0, 0, 0, 0];
 let currentDisplay = [0, 0, 0, 0, 0, 0, 0, 0];
 let showFront = [true, true, true, true, true, true, true, true];
@@ -37,6 +38,11 @@ function updateTime() {
 	hours = new Date().getHours().toString();
 	minutes = new Date().getMinutes().toString();
 	seconds = new Date().getSeconds().toString();
+
+	if(am_pm.checked && parseInt(hours) > 12){
+		hours = hours - 12;
+		hours = hours.toString();
+	}
 
 	if (hours.length == 1) {
 		hours = "0" + hours;
